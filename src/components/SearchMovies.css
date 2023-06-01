@@ -1,0 +1,25 @@
+.search-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 50px;
+    width: 462px;
+    height: 334.77px;
+    margin: auto;
+}
+
+.search-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.search-box input {
+    width: 462px;
+    height: 40px;
+}
+
+.search-box img {
+    width: 270px;
+}

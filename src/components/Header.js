@@ -1,6 +1,9 @@
 import "./Header.css"
 
 function Header(props) {
+
+    const {movies, callbackToSetMovies} = props;
+
     return(
         <header className="header">
             <h1 className="concealed-title">CONCEALED <span className="red">FILMS</span></h1>
