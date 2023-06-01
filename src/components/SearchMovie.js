@@ -13,7 +13,8 @@ function SearchMovie(props) {
     
         try {
             const newMoviesArr = [];
-            const {data} = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}`);
+            const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}`);
+            const {data} = response;
 
             newMoviesArr.push(...data.results);
             
@@ -22,6 +23,7 @@ function SearchMovie(props) {
                 newMoviesArr.push(...newData.results);
             }
 
+            setResults(data.total_results);
             setMovies(newMoviesArr);
 
 
