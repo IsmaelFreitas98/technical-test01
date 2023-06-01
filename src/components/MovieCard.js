@@ -33,9 +33,6 @@ function MovieCard(props) {
         const genres = movieDetails.genres.map(genreObj => {
             return genreObj.name;
         })
-
-        console.log(genres.join(", "));
-
         return genres.join(", ");
     }
 

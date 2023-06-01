@@ -8,6 +8,7 @@ import MovieDisplayer from './components/MovieDisplayer';
 function App() {
 
   const [movies, setMovies] = useState(null);
+  const [totalResults, setTotalResults] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
 
   const cleanMovies = () => {
@@ -21,9 +22,9 @@ function App() {
 
       <section className='content'>
         {movies ?
-          <MovieDisplayer movies={movies} searchQuery={searchQuery}/>
+          <MovieDisplayer movies={movies} searchQuery={searchQuery} totalResults={totalResults}/>
           :
-          <SearchMovie callbackToSetMovies={setMovies} searchQuery={searchQuery} setSearchQuery={setSearchQuery}></SearchMovie>
+          <SearchMovie callbackToSetMovies={setMovies} callbackToSetResult={setTotalResults} searchQuery={searchQuery} setSearchQuery={setSearchQuery}></SearchMovie>
         }
       </section>
     </div>
