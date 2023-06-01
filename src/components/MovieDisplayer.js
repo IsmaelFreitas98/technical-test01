@@ -35,9 +35,7 @@ function MovieDisplayer(props) {
     const renderMovies = () => {
         return moviesToDisplay.map(movie => {
             return (
-                <>
-                    <MovieCard movie={movie} />
-                </>
+                <MovieCard key={movie.id} movie={movie} />
             )
         })
     }
@@ -49,7 +47,7 @@ function MovieDisplayer(props) {
                     <p>We found {totalResults} {totalResults === 1 ? "result" : "results"} for '{searchQuery}'</p>
                 </div>
 
-                <select value={sortOrder} onChange={e => setSortOrder(e.target.value)}>
+                <select className="order-selector" value={sortOrder} onChange={e => setSortOrder(e.target.value)}>
                     <option value="ascending">Sort By Name: Ascending</option>
                     <option value="descending">Sort By Name: Descending</option>
                 </select>

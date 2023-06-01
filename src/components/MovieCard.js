@@ -2,6 +2,7 @@
 import "./MovieCard.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import star from "../images/star.png";
 
 const key = process.env.REACT_APP_API_KEY;
 
@@ -64,6 +65,7 @@ function MovieCard(props) {
 
                         <div className="rating">
                             <p className="rating-text">{roundAverage()} / 10</p>
+                            <img src={star} alt="star" />
                         </div>
                     </div>
                 </>

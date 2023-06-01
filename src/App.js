@@ -32,8 +32,6 @@ function App() {
           newMoviesArr.push(...newData.results);
       }
 
-      console.log("got results");
-
       setTotalResults(data.total_results);
       setMovies(newMoviesArr);
 

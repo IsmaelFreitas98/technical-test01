@@ -4,3 +4,13 @@
   flex-direction: column;
 }
 
+input {
+  width: 462px;
+  height: 40px;
+
+  background-color: transparent;
+  color: white;
+
+  border: 1px solid #363B3F;
+  border-radius: 12px;
+}

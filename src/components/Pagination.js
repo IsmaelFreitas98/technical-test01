@@ -26,7 +26,7 @@ function Pagination(props) {
         }
 
         return pagesArr.map(num => {
-            return <span className={num === page ? "active-page page-selector" : "page-selector"} onClick={() => {setPage(num)}}>{num}</span>
+            return <span key={num} className={num === page ? "active-page page-selector" : "page-selector"} onClick={() => {setPage(num)}}>{num}</span>
         })
     }
 

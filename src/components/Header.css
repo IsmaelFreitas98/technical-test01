@@ -27,3 +27,22 @@ span.red {
     margin-bottom: 0;
 
 }
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+}
+
+.header-search {
+    width: 284px;
+    height: 40px;
+}
+
+.profile-icon-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 64px;
+}

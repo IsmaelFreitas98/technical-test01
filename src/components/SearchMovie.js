@@ -1,5 +1,5 @@
 import searchPicture from "../images/search-page-pic.png"
-import "./SearchMovies.css"
+import "./SearchMovie.css"
 
 function SearchMovie(props) {
 
