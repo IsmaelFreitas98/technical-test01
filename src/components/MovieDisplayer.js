@@ -17,6 +17,10 @@ function MovieDisplayer(props) {
     }, [])
 
     useEffect(() => {
+        setPage(1);
+    }, [sortOrder])
+
+    useEffect(() => {
 
         const newMoviesToDisplay = [...movies];
 
