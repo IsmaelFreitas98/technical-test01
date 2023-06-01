@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import "./MovieDisplayer.css"
 import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 
@@ -44,7 +45,9 @@ function MovieDisplayer(props) {
                 </select>
             </div>
 
-            {renderMovies()}
+            <div className="movie-card-container">
+                {renderMovies()}
+            </div>
         </>
     );
 }

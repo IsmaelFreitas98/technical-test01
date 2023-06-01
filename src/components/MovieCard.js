@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import "./MovieCard.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -52,14 +53,18 @@ function MovieCard(props) {
         
             {movieDetails &&
                 <>
-                    <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title}/>
+                    <div className="movie-poster" style={{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movie.poster_path})`}}>
+                    </div>
 
-                    <h4>{movie.title}</h4>
                     
-                    <p>{calcTimeString()} | {calcGenres() || "Unspecified Genre"} | {calcDate()}</p>
+                    <div className="movie-info">
+                        <h4 className="movie-title">{movie.title}</h4>
+                        
+                        <p className="movie-specs">{calcTimeString()} | {calcGenres() || "Unspecified Genre"} | {calcDate()}</p>
 
-                    <div>
-                        <p>{roundAverage()} / 10</p>
+                        <div className="rating">
+                            <p className="rating-text">{roundAverage()} / 10</p>
+                        </div>
                     </div>
                 </>
             }

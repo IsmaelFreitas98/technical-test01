@@ -2,7 +2,7 @@ import "./Header.css"
 
 function Header(props) {
 
-    const {movies, callbackToCleanMovies} = props;
+    const { callbackToCleanMovies } = props;
 
     return(
         <header className="header">

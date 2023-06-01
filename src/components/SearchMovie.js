@@ -1,4 +1,3 @@
-import { useState } from "react";
 import searchPicture from "../images/search-page-pic.png"
 import "./SearchMovies.css"
 import axios from "axios";
@@ -8,8 +7,6 @@ const key = process.env.REACT_APP_API_KEY;
 function SearchMovie(props) {
 
     const {callbackToSetMovies: setMovies, callbackToSetResult: setResults, searchQuery, setSearchQuery} = props;
-
-
 
     const handleInputSubmit = (e) => {
         e.preventDefault();
