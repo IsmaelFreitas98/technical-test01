@@ -1,0 +1,26 @@
+span.red {
+    color: #D81F26;
+    font-weight: 400;
+}
+
+.concealed-title {
+    font-weight: 600;
+    font-size: 23.1px;
+    line-height: 27.96px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 40px;
+    gap: 171px;
+
+    position: absolute;
+    width: 1440px;
+    height: 32px;
+    left: 0px;
+    top: 33px;
+
+}
