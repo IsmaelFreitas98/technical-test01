@@ -2,25 +2,31 @@
 import "./MovieDisplayer.css"
 import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
+import Pagination from "./Pagination";
 
 function MovieDisplayer(props) {
-    const { movies, searchQuery, totalResults } = props;
+    const { movies, searchQuery, totalResults, page, setPage } = props;
 
     const [moviesToDisplay, setMoviesToDisplay] = useState(movies.slice(0, 8));
     const [sortOrder, setSortOrder] = useState("ascending");
 
     useEffect(() => {
+        return () => {
+            setPage(1);
+        }
+    }, [])
+
+    useEffect(() => {
 
         const newMoviesToDisplay = [...movies];
 
-        console.log(newMoviesToDisplay);
         newMoviesToDisplay.sort((movie, nextMovie) => {
             return sortOrder === "ascending" ? movie.title.localeCompare(nextMovie.title) : nextMovie.title.localeCompare(movie.title);
         })
         
-        setMoviesToDisplay(newMoviesToDisplay.slice(0, 8));
+        setMoviesToDisplay(newMoviesToDisplay.slice((0 + (page - 1) * 8),( 8 + (page - 1) * 8)));
 
-    }, [sortOrder])
+    }, [sortOrder, page])
 
     const renderMovies = () => {
         return moviesToDisplay.map(movie => {
@@ -48,6 +54,8 @@ function MovieDisplayer(props) {
             <div className="movie-card-container">
                 {renderMovies()}
             </div>
+
+            <Pagination page={page} totalPages={Math.ceil(movies.length / 8)} setPage={setPage}/>
         </>
     );
 }

@@ -1,0 +1,20 @@
+.pagination-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    padding: 0px;
+    gap: 8px;
+
+    width: 272px;
+    height: 32px;
+    margin: 80px auto;
+}
+
+span.page-selector:hover {
+    cursor: pointer;
+}
+
+span.active-page {
+    color:#D81F26;
+}

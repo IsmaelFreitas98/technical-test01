@@ -9,6 +9,7 @@ function App() {
   const [movies, setMovies] = useState(null);
   const [totalResults, setTotalResults] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
+  const [page, setPage] = useState(1);
 
   const cleanMovies = () => {
     setMovies(null);
@@ -21,7 +22,7 @@ function App() {
 
       <section className='content'>
         {movies ?
-          <MovieDisplayer movies={movies} searchQuery={searchQuery} totalResults={totalResults}/>
+          <MovieDisplayer movies={movies} searchQuery={searchQuery} totalResults={totalResults} page={page} setPage={setPage}/>
           :
           <SearchMovie callbackToSetMovies={setMovies} callbackToSetResult={setTotalResults} searchQuery={searchQuery} setSearchQuery={setSearchQuery}></SearchMovie>
         }
