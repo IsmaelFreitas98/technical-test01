@@ -21,11 +21,8 @@ span.red {
     padding: 0px 40px;
     gap: 171px;
 
-    position: absolute;
     width: 1440px;
     height: 32px;
-    left: 0px;
-    right: 0px;
-    top: 33px;
+    margin: 33px auto;
 
 }

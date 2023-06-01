@@ -1,4 +1,5 @@
 import { useState } from "react";
+import MovieCard from "./MovieCard";
 
 function MovieDisplayer(props) {
     const { movies } = props;
@@ -9,13 +10,18 @@ function MovieDisplayer(props) {
         return moviesToDisplay.map(movie => {
             return (
                 <>
-                    <h4>{movie.title}</h4>
+                    <MovieCard movie={movie} />
                 </>
             )
         })
     }
     return (
         <>
+            <div className="displayer-header">
+                <div className="result-description">
+                    <h4>Results for '{}'</h4>
+                </div>
+            </div>
             {renderMovies()}
         </>
     );

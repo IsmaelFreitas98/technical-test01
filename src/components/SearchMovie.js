@@ -7,18 +7,16 @@ const key = process.env.REACT_APP_API_KEY;
 
 function SearchMovie(props) {
 
-    const {callbackToSetMovies: setMovies} = props;
+    const {callbackToSetMovies: setMovies, searchQuery, setSearchQuery} = props;
 
-    const [searchQuery, setSearchQuery] = useState("");
+
 
     const handleInputSubmit = (e) => {
         e.preventDefault();
 
         axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}`)
             .then((response) => {
-                console.log(response);
                 setMovies(response.data.results);
-                setSearchQuery("");
             }).catch((err) => {
                 console.err(err);
             });

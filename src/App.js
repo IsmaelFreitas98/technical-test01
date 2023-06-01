@@ -8,6 +8,7 @@ import MovieDisplayer from './components/MovieDisplayer';
 function App() {
 
   const [movies, setMovies] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const cleanMovies = () => {
     setMovies(null);
@@ -20,9 +21,9 @@ function App() {
 
       <section className='content'>
         {movies ?
-          <MovieDisplayer movies={movies} />
+          <MovieDisplayer movies={movies} searchQuery={searchQuery}/>
           :
-          <SearchMovie callbackToSetMovies={setMovies}></SearchMovie>
+          <SearchMovie callbackToSetMovies={setMovies} searchQuery={searchQuery} setSearchQuery={setSearchQuery}></SearchMovie>
         }
       </section>
     </div>
