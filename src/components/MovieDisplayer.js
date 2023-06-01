@@ -39,6 +39,7 @@ function MovieDisplayer(props) {
             )
         })
     }
+
     return (
         <>
             <div className="displayer-header">

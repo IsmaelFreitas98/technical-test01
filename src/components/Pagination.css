@@ -1,7 +1,7 @@
 .pagination-nav {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-evenly;
     padding: 0px;
     gap: 8px;
@@ -11,7 +11,7 @@
     margin: 80px auto;
 }
 
-span.page-selector:hover {
+.page-selector:hover {
     cursor: pointer;
 }
 

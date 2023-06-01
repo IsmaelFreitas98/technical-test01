@@ -39,5 +39,19 @@
 
 }
 
+.order-selector {
+    width: 253px;
+    height: 40px;
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(102, 105, 106, 0.2);
+    border-radius: 8px;
+}
+
+.order-selector option {
+    
+    color: black;
+}
+
 
 

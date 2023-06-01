@@ -1,4 +1,7 @@
 import "./Pagination.css";
+import arrowBack from "../images/arrow-back.png";
+import arrowForward from "../images/arrow-forward.png";
+
 
 function Pagination(props) {
 
@@ -32,7 +35,9 @@ function Pagination(props) {
 
     return (
         <nav className="pagination-nav">
-            <span className="page-selector" onClick={() => {page - 1 > 0 && setPage(page - 1)}}>«</span> {renderPageOptions()} <span className="page-selector" onClick={() => {page + 1 <= totalPages && setPage(page + 1)}}>»</span>
+            <img src={arrowBack} alt="arrow back" className="page-selector" onClick={() => {page - 1 > 0 && setPage(page - 1)}} /> 
+            {renderPageOptions()} 
+            <img src={arrowForward} alt="arrow for" className="page-selector" onClick={() => {page + 1 <= totalPages && setPage(page + 1)}} />
         </nav>
     );
 }

@@ -1,7 +1,7 @@
 .movie-card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
     padding: 0px;
     gap: 24px;
@@ -22,6 +22,10 @@
 
 }
 
+.movie-info {
+    height: 120px;
+}
+
 .movie-title {
     font-weight: 400;
     margin: 0;
@@ -32,7 +36,6 @@
 .movie-specs {
     font-weight: 400;
     font-size: 15px;
-    width: 240px;
     margin-top: 0;
     line-height: 18px;
     text-overflow: clip;
