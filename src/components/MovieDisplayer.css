@@ -4,7 +4,8 @@
     align-items: flex-end;
     width: 1360px;
     height: 47px;
-    margin: auto;
+    margin: 64px auto;
+    margin-bottom: 0;
 }
 
 .movie-card-container {
@@ -15,6 +16,7 @@
     gap: 40px;
     width: 1360px;
     height: 1004px;
+    margin: auto;
     margin-top: 44px;
 }
 

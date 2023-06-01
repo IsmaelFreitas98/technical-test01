@@ -24,5 +24,6 @@ span.red {
     width: 1440px;
     height: 32px;
     margin: 33px auto;
+    margin-bottom: 0;
 
 }

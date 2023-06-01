@@ -8,16 +8,26 @@ function SearchMovie(props) {
 
     const {callbackToSetMovies: setMovies, callbackToSetResult: setResults, searchQuery, setSearchQuery} = props;
 
-    const handleInputSubmit = (e) => {
+    const handleInputSubmit = async (e) => {
         e.preventDefault();
+    
+        try {
+            const newMoviesArr = [];
+            const {data} = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}`);
 
-        axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}`)
-            .then((response) => {
-                setResults(response.data.total_results);
-                setMovies(response.data.results);
-            }).catch((err) => {
-                console.log(err);
-            });
+            newMoviesArr.push(...data.results);
+            
+            for(let page = 2; page <= data.total_pages; page++) {
+                const {data: newData} = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}&page=${page}`);
+                newMoviesArr.push(...newData.results);
+            }
+
+            setMovies(newMoviesArr);
+
+
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     return (
