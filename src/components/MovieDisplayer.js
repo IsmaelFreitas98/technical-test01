@@ -30,7 +30,7 @@ function MovieDisplayer(props) {
         
         setMoviesToDisplay(newMoviesToDisplay.slice((0 + (page - 1) * 8),( 8 + (page - 1) * 8)));
 
-    }, [sortOrder, page])
+    }, [sortOrder, page, movies])
 
     const renderMovies = () => {
         return moviesToDisplay.map(movie => {
