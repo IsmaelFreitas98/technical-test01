@@ -9,6 +9,10 @@ span.red {
     line-height: 27.96px;
 }
 
+.concealed-title:hover {
+    cursor: pointer;
+}
+
 .header {
     display: flex;
     flex-direction: row;
@@ -21,6 +25,7 @@ span.red {
     width: 1440px;
     height: 32px;
     left: 0px;
+    right: 0px;
     top: 33px;
 
 }

@@ -3,19 +3,24 @@ import './App.css';
 import Header from './components/Header';
 import SearchMovie from './components/SearchMovie';
 import { useState } from 'react';
+import MovieDisplayer from './components/MovieDisplayer';
 
 function App() {
 
   const [movies, setMovies] = useState(null);
 
+  const cleanMovies = () => {
+    setMovies(null);
+  }
+
 
   return (
     <div className="App">
-      <Header />
+      <Header movies={movies} callbackToCleanMovies={cleanMovies}/>
 
       <section className='content'>
         {movies ?
-          <p>Movies{console.log(movies)}</p>
+          <MovieDisplayer movies={movies} />
           :
           <SearchMovie callbackToSetMovies={setMovies}></SearchMovie>
         }

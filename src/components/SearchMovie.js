@@ -20,7 +20,7 @@ function SearchMovie(props) {
                 setMovies(response.data.results);
                 setSearchQuery("");
             }).catch((err) => {
-                console.log(err);
+                console.err(err);
             });
     }
 
