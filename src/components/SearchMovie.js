@@ -13,13 +13,17 @@ function SearchMovie(props) {
 
     return (
         <section className="search-box">
-            <img src={searchPicture} alt="search-pic" />
+            <div className="search-pic-container">
+                <img src={searchPicture} alt="search-pic" />
+            </div>
 
-            <h4 className="search-title">Search by movie name:</h4>
+            <div className="search-form">
+                <h4 className="search-title">Search by movie name:</h4>
 
-            <form onSubmit={handleInputSubmit}>
-                <input required type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
-            </form>
+                <form onSubmit={handleInputSubmit}>
+                    <input required type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+                </form>
+            </div>
         </section>
     );
 }
