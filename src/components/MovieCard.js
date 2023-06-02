@@ -59,12 +59,14 @@ function MovieCard(props) {
 
                     
                     <div className="movie-info">
-                        <h4 className="movie-title">{movie.title}</h4>
-                        
-                        <p className="movie-specs">{calcTimeString()} | {calcGenres() || "Unspecified Genre"} | {calcDate()}</p>
+
+                        <div className="movie-info-text">
+                            <h4>{movie.title}</h4>
+                            <p>{calcTimeString()} | {calcGenres() || "Unspecified Genre"} | {calcDate()}</p>
+                        </div>
 
                         <div className="rating">
-                            <p className="rating-text">{roundAverage()} / 10</p>
+                            <p>{roundAverage()} / 10</p>
                             <img src={star} alt="star" />
                         </div>
                     </div>
