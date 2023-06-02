@@ -54,10 +54,15 @@ function MovieDisplayer(props) {
                 </select>
             </div>
 
-            <div className="movie-card-container">
-                {renderMovies()}
-                <Pagination page={page} totalPages={Math.ceil(movies.length / 10)} setPage={setPage}/>
-            </div>
+            <section className="results-container">
+                <div className="cards-container">
+                    {renderMovies()}
+                </div>
+
+                <div>
+                    <Pagination page={page} totalPages={Math.ceil(movies.length / 10)} setPage={setPage}/>
+                </div>
+            </section>
 
         </>
     );

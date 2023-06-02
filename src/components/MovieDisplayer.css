@@ -75,7 +75,10 @@
     margin: 0;
 }
 
-.movie-card-container {
+
+/*Content*/
+
+.results-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -88,6 +91,33 @@
     left: 40px;
     top: 220px;
 }
+
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 0px;
+    gap: 40px;
+
+    width: 1360px;
+    height: 1004px;
+}
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+
+    width: 1360px;
+    height: 32px;
+}
+
+
+
 
 
 
