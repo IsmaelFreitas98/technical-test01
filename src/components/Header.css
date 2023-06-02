@@ -63,8 +63,17 @@ h1.concealed-title.red {
 }
 
 .header-search {
+    box-sizing: border-box;
     width: 284px;
     height: 40px;
+    color: #F9F6F1;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    background-color: transparent;
+    border: 1px solid rgba(102, 105, 106, 0.2);
+    border-radius: 12px;
 }
 
 .profile-icon-container {
