@@ -56,9 +56,9 @@ function MovieDisplayer(props) {
 
             <div className="movie-card-container">
                 {renderMovies()}
+                <Pagination page={page} totalPages={Math.ceil(movies.length / 10)} setPage={setPage}/>
             </div>
 
-            <Pagination page={page} totalPages={Math.ceil(movies.length / 10)} setPage={setPage}/>
         </>
     );
 }
