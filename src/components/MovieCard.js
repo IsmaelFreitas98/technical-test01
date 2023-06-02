@@ -66,7 +66,7 @@ function MovieCard(props) {
                         </div>
 
                         <div className="rating">
-                            <p>{roundAverage()} / 10</p>
+                            <span>{roundAverage()} / 10</span>
                             <img src={star} alt="star" />
                         </div>
                     </div>
