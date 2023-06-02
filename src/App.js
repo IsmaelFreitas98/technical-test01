@@ -43,7 +43,7 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="App" style={{minHeight: movies && "1396px"}}>
       <Header movies={movies} callbackToCleanMovies={cleanMovies} searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleSearch={handleSearch}/>
 
       <section className='content'>
