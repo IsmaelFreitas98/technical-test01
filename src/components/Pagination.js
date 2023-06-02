@@ -11,7 +11,13 @@ function Pagination(props) {
         let min;
         let max;
 
-        if(page - 2 < 1) {
+        if(totalPages === 1) {
+            return <></>;
+        }
+        if(totalPages < 6) {
+            min = 1;
+            max = totalPages;
+        } else if(page - 2 < 1) {
             min = 1;
             max = 5;
         } else if(page + 2 > totalPages){
@@ -34,11 +40,15 @@ function Pagination(props) {
     }
 
     return (
-        <nav className="pagination-nav">
-            <img src={arrowBack} alt="arrow back" className="page-selector" onClick={() => {page - 1 > 0 && setPage(page - 1)}} /> 
-            {renderPageOptions()} 
-            <img src={arrowForward} alt="arrow for" className="page-selector" onClick={() => {page + 1 <= totalPages && setPage(page + 1)}} />
-        </nav>
+        <>
+            { totalPages !== 1 && 
+                <nav className="pagination-nav">
+                    <img src={arrowBack} alt="arrow back" className="page-selector" onClick={() => {page - 1 > 0 && setPage(page - 1)}} /> 
+                    {renderPageOptions()} 
+                    <img src={arrowForward} alt="arrow for" className="page-selector" onClick={() => {page + 1 <= totalPages && setPage(page + 1)}} />
+                </nav>
+            }
+        </>
     );
 }
 

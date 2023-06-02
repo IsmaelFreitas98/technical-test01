@@ -28,7 +28,7 @@ function MovieDisplayer(props) {
             return sortOrder === "ascending" ? movie.title.localeCompare(nextMovie.title) : nextMovie.title.localeCompare(movie.title);
         })
         
-        setMoviesToDisplay(newMoviesToDisplay.slice((0 + (page - 1) * 8),( 8 + (page - 1) * 8)));
+        setMoviesToDisplay(newMoviesToDisplay.slice((0 + (page - 1) * 10),( 10 + (page - 1) * 10)));
 
     }, [sortOrder, page, movies])
 
@@ -58,7 +58,7 @@ function MovieDisplayer(props) {
                 {renderMovies()}
             </div>
 
-            <Pagination page={page} totalPages={Math.ceil(movies.length / 8)} setPage={setPage}/>
+            <Pagination page={page} totalPages={Math.ceil(movies.length / 10)} setPage={setPage}/>
         </>
     );
 }
