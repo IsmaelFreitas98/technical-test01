@@ -1,10 +1,22 @@
 # Technical interview Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Small Web App to search movie titles and get their basic information, usig TMDB's API. 
+This project is the result of a Technical interview Challenge.
 
-## Available Scripts
+## About the test
 
-In the project directory, you can run:
+The challenge consisted in creating a web app that allowed it's users to search for movie titles and get a list of results, displaying all the information according to the design provided in the challenge description.
+
+The test had a duration of 8 hours, so, although I kept on making upgrades, the valid version for evaluation purposes is Commit 8086ccc, with the message "Final Commit for evaluation purposes, deadline met".
+
+## If you want to play around with it
+
+- Fork this Repo, and clone your fork to your machine;
+- Open your repo, and run "npm install";
+- If you have a Key to access TMDB's API, define it in a .env file with the name REACT_APP_API_KEY;
+- Run "npm start";
+
+## Available Commands
 
 ### `npm start`
 
