@@ -52,17 +52,38 @@
     color: #FFFFFF;
 }
 
-.search-box input {
+.search-input {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 8px;
     width: 462px;
     height: 40px;
-
-    margin: 0;
-    padding: 0;
-    background-color: transparent;
-    color: white;
-  
     border: 1px solid #363B3F;
     border-radius: 12px;
+}
+
+.search-input img {
+    width: 24px;
+    height: 24px;
+}
+
+.search-input input {
+    border: none;
+    background-color: transparent;
+    width: 406px;
+    height: 24px;
+
+    
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+
+    letter-spacing: -0.01em;
+
+    color: #F9F6F1;
 }
 
 .search-form form {

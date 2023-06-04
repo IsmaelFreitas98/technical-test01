@@ -24,7 +24,7 @@ function Header(props) {
             <nav className="header-nav" style={{width: movies ? "424px" : "114px", height: movies ? "40px" : "32px"}}>
                 {movies && 
                     <form onSubmit={handleInputSubmit}>
-                        <input required type="text" className="header-search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+                        <input required type="text" placeholder="Search" className="header-search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
                     </form>
                 }
 

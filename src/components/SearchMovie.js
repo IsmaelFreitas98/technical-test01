@@ -1,5 +1,6 @@
-import searchPicture from "../images/search-page-pic.png"
-import "./SearchMovie.css"
+import searchPicture from "../images/search-page-pic.png";
+import magnifierPicture from "../images/search-icon.png";
+import "./SearchMovie.css";
 
 function SearchMovie(props) {
 
@@ -20,9 +21,12 @@ function SearchMovie(props) {
             <div className="search-form">
                 <h4 className="search-title">Search by movie name:</h4>
 
-                <form onSubmit={handleInputSubmit}>
-                    <input required type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
-                </form>
+                <div className="search-input">
+                    <img src={magnifierPicture} alt="search" />
+                    <form onSubmit={handleInputSubmit}>
+                        <input required type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+                    </form>
+                </div>
             </div>
         </section>
     );
