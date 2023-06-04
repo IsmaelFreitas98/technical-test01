@@ -77,7 +77,7 @@ h1.concealed-title.red {
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    background-color: transparent;
+    background-color: #131C23;
     border: 1px solid rgba(102, 105, 106, 0.2);
     border-radius: 12px;
 }
@@ -95,7 +95,7 @@ h1.concealed-title.red {
     top: 40px;
 
     background: #131C23;
-    opacity: 100%;
+    opacity: 1;
     border-radius: 0px 0px 8px 8px;
 }
 

@@ -41,7 +41,7 @@ function Pagination(props) {
 
     return (
         <>
-            { totalPages !== 1 && 
+            { totalPages > 1 && 
                 <nav className="pagination-nav">
                     <img src={arrowBack} alt="arrow back" className="page-selector" onClick={() => {page - 1 > 0 && setPage(page - 1)}} /> 
                     {renderPageOptions()} 
