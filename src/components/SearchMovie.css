@@ -86,6 +86,10 @@
     color: #F9F6F1;
 }
 
+.search-input input:focus {
+    outline: none;
+}
+
 .search-form form {
     margin: 0;
 }

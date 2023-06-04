@@ -63,6 +63,10 @@ h1.concealed-title.red {
     height: 24px;
 }
 
+.header-nav > form {
+    position: relative;
+}
+
 .header-search {
     box-sizing: border-box;
     width: 284px;
@@ -75,6 +79,23 @@ h1.concealed-title.red {
     background-color: transparent;
     border: 1px solid rgba(102, 105, 106, 0.2);
     border-radius: 12px;
+}
+
+.header-search:focus {
+    border-radius: 8px 8px 0px 0px;
+    outline: none;
+}
+
+.suggestion-box {
+    position: absolute;
+    width: 284px;
+    height: 120px;
+    left: 0px;
+    top: 40px;
+
+    background: #131C23;
+    opacity: 100%;
+    border-radius: 0px 0px 8px 8px;
 }
 
 .profile-icon-container {

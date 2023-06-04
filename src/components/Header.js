@@ -1,11 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./Header.css"
 import bell from "../images/notification.png";
 import profilePic from "../images/profile-pic.png";
 import arrowDown from "../images/arrow-down.png";
+import { useEffect, useState } from "react";
 
 function Header(props) {
 
     const { movies, callbackToCleanMovies, searchQuery, setSearchQuery, handleSearch} = props;
+
+    const [isSearchFocused, setIsSearchFocused] = useState(false);
+
+    useEffect(() => {
+        setSearchQuery("");
+    }, [])
 
     const handleInputSubmit = async (e) => {
         e.preventDefault();
@@ -24,7 +32,12 @@ function Header(props) {
             <nav className="header-nav" style={{width: movies ? "424px" : "114px", height: movies ? "40px" : "32px"}}>
                 {movies && 
                     <form onSubmit={handleInputSubmit}>
-                        <input required type="text" placeholder="Search" className="header-search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+                        <input required onFocus={() => setIsSearchFocused(true)} onBlur={() => setIsSearchFocused(false)} type="text" placeholder="Search" className="header-search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+                        { isSearchFocused &&
+                            <div className="suggestion-box">
+                                List
+                            </div>
+                        }
                     </form>
                 }
 
