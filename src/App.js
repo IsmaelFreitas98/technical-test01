@@ -39,11 +39,11 @@ function App() {
   } catch (err) {
       console.error(err);
   }
-  }
+}
 
 
   return (
-    <div className="App" style={{minHeight: movies && "1396px"}}>
+    <div className="App" style={{minHeight: movies ? "1396px" : "1024px"}}>
       <Header movies={movies} callbackToCleanMovies={cleanMovies} searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleSearch={handleSearch}/>
 
       <section className='content'>

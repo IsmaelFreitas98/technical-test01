@@ -3,6 +3,7 @@ import "./MovieCard.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import star from "../images/star.png";
+import defaultCover from "../images/default-movie.jpg"
 
 const key = process.env.REACT_APP_API_KEY;
 
@@ -54,7 +55,7 @@ function MovieCard(props) {
         
             {movieDetails &&
                 <>
-                    <div className="movie-poster" style={{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movie.poster_path})`}}>
+                    <div className="movie-poster" style={{backgroundImage: movie.poster_path ? `url(https://image.tmdb.org/t/p/w500/${movie.poster_path})` : `url(${defaultCover})`}}>
                     </div>
 
                     
