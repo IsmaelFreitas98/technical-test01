@@ -5,6 +5,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0px 40px;
+    margin: 0;
     gap: 171px;
 
     position: absolute;
@@ -82,7 +83,7 @@ h1.concealed-title.red {
 }
 
 .header-search:focus {
-    border-radius: 8px 8px 0px 0px;
+    border-radius: 12px 12px 0px 0px;
     outline: none;
 }
 

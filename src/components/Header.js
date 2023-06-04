@@ -11,9 +11,11 @@ function Header(props) {
 
     const [isSearchFocused, setIsSearchFocused] = useState(false);
 
+    
+
     useEffect(() => {
         setSearchQuery("");
-    }, [])
+    }, [movies])
 
     const handleInputSubmit = async (e) => {
         e.preventDefault();
