@@ -4,14 +4,28 @@ import bell from "../images/notification.png";
 import profilePic from "../images/profile-pic.png";
 import arrowDown from "../images/arrow-down.png";
 import { useEffect, useState } from "react";
+import axios from "axios";
+
+const key = process.env.REACT_APP_API_KEY || "37806dd1300837fa217e0539b5252818";
 
 function Header(props) {
 
     const { movies, callbackToCleanMovies, searchQuery, setSearchQuery, handleSearch} = props;
 
     const [isSearchFocused, setIsSearchFocused] = useState(false);
+    const [titleSuggestions, setTitleSuggestions] = useState(null);
 
-    
+    useEffect(() => {
+        if(isSearchFocused) {
+            axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}`)
+                .then((response) => {
+                    const suggestionsArr = response.data.results.slice(0, 3).map(movie => movie.title);
+                    setTitleSuggestions(suggestionsArr);
+                }).catch((err) => {
+                    console.error(err);
+                });
+        }
+    }, [searchQuery])
 
     useEffect(() => {
         setSearchQuery("");
@@ -35,9 +49,15 @@ function Header(props) {
                 {movies && 
                     <form onSubmit={handleInputSubmit}>
                         <input required onFocus={() => setIsSearchFocused(true)} onBlur={() => setIsSearchFocused(false)} type="text" placeholder="Search" className="header-search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
-                        { isSearchFocused &&
+                        { (isSearchFocused && titleSuggestions) &&
                             <div className="suggestion-box">
-                                List
+                                <ul>
+                                    {titleSuggestions.map(title => {
+                                        return (
+                                            <li>{title}</li>
+                                        );
+                                    })}
+                                </ul>
                             </div>
                         }
                     </form>
