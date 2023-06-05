@@ -14,16 +14,31 @@ function Header(props) {
 
     const [isSearchFocused, setIsSearchFocused] = useState(false);
     const [titleSuggestions, setTitleSuggestions] = useState(null);
+    const [isDataReady, setIsDataReady] = useState(true)
 
     useEffect(() => {
-        if(isSearchFocused) {
+        if(isSearchFocused && searchQuery !== "" && isDataReady) {
+
+            setIsDataReady(false);
+
             axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}`)
                 .then((response) => {
-                    const suggestionsArr = response.data.results.slice(0, 3).map(movie => movie.title);
-                    setTitleSuggestions(suggestionsArr);
-                }).catch((err) => {
+
+                    const suggestionsArr = response.data.results
+                                            .filter(movie => movie.title.toLowerCase().includes(searchQuery.toLowerCase()))
+                                            .slice(0, 3)
+                                            .map(movie => movie.title);
+
+                    suggestionsArr.length === 0 ? setTitleSuggestions(null) : setTitleSuggestions(suggestionsArr);
+                    setIsDataReady(true);
+                })
+                .catch((err) => {
                     console.error(err);
                 });
+
+        } else if(searchQuery === "") {
+            console.log("clean suggestions");
+            setTitleSuggestions(null);
         }
     }, [searchQuery])
 
@@ -48,13 +63,14 @@ function Header(props) {
             <nav className="header-nav" style={{width: movies ? "424px" : "114px", height: movies ? "40px" : "32px"}}>
                 {movies && 
                     <form onSubmit={handleInputSubmit}>
-                        <input required onFocus={() => setIsSearchFocused(true)} onBlur={() => setIsSearchFocused(false)} type="text" placeholder="Search" className="header-search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+                        <input onFocus={() => setIsSearchFocused(true)} onBlur={() => {setTimeout(() => {setIsSearchFocused(false)}, 100)}} style={{borderRadius: (isSearchFocused && titleSuggestions) ? "12px 12px 0 0" : "12px"}} type="text" placeholder="Search" className="header-search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
                         { (isSearchFocused && titleSuggestions) &&
                             <div className="suggestion-box">
                                 <ul>
-                                    {titleSuggestions.map(title => {
+                                    {titleSuggestions.map((title, index) => {
+                                        console.log(titleSuggestions);
                                         return (
-                                            <li>{title}</li>
+                                            <li key={index} style={{top: index * 40 + "px"}} onClick={() => setSearchQuery(title)}>{title}</li>
                                         );
                                     })}
                                 </ul>

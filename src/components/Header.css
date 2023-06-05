@@ -77,7 +77,7 @@ h1.concealed-title.red {
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    background-color: #131C23;
+    background-color: transparent;
     border: 1px solid rgba(102, 105, 106, 0.2);
     border-radius: 12px;
 }
@@ -88,14 +88,35 @@ h1.concealed-title.red {
 
 .suggestion-box {
     position: absolute;
+    background: #131C23;
+    z-index: 1;
     width: 284px;
     height: 120px;
     left: 0px;
     top: 40px;
 
-    background: #131C23;
-    opacity: 1;
     border-radius: 0px 0px 8px 8px;
+}
+
+.suggestion-box ul {
+    list-style: none;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 284px;
+    height: 120px;
+    border-radius: 0px 0px 8px 8px;
+}
+
+.suggestion-box ul li {
+    position: absolute;
+    width: 284px;
+    height: 40px;
+    left: 0px;
+    padding: 8px 16px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
 }
 
 .profile-icon-container {
