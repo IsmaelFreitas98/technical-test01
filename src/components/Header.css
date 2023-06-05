@@ -101,6 +101,7 @@ h1.concealed-title.red {
 .suggestion-box ul {
     list-style: none;
     position: relative;
+    overflow: hidden;
     margin: 0;
     padding: 0;
     width: 284px;
@@ -109,7 +110,9 @@ h1.concealed-title.red {
 }
 
 .suggestion-box ul li {
+    box-sizing: border-box;
     position: absolute;
+    white-space: nowrap;
     width: 284px;
     height: 40px;
     left: 0px;
@@ -117,6 +120,16 @@ h1.concealed-title.red {
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
+    color: #9E9E9E;
+}
+
+.suggestion-box ul li .highlighted {
+    color: #F9F6F1;
+}
+
+.suggestion-box ul li:hover {
+    cursor: pointer;
+    background-color: #09131A;;
 }
 
 .profile-icon-container {

@@ -52,6 +52,20 @@ function Header(props) {
         handleSearch();
     }
 
+    const renderOption = (title) => {
+        const indexToStyle = title.toLowerCase().indexOf(searchQuery.toLowerCase());
+
+        return(
+            <>
+                {title.slice(0, indexToStyle)}
+                <span className="highlighted">
+                    {title.slice(indexToStyle, (indexToStyle + searchQuery.trim().length))}
+                </span>
+                {title.slice((indexToStyle + searchQuery.trim().length))}
+            </>
+        )
+    }
+
     return(
         <header className="header">
 
@@ -70,7 +84,7 @@ function Header(props) {
                                     {titleSuggestions.map((title, index) => {
                                         console.log(titleSuggestions);
                                         return (
-                                            <li key={index} style={{top: index * 40 + "px"}} onClick={() => setSearchQuery(title)}>{title}</li>
+                                            <li key={index} style={{top: index * 40 + "px"}} onClick={() => setSearchQuery(title)}>{renderOption(title)}</li>
                                         );
                                     })}
                                 </ul>
