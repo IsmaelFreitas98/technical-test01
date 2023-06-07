@@ -58,9 +58,11 @@ function Header(props) {
         return(
             <>
                 {title.slice(0, indexToStyle)}
+                
                 <span className="highlighted">
                     {title.slice(indexToStyle, (indexToStyle + searchQuery.trim().length))}
                 </span>
+
                 {title.slice((indexToStyle + searchQuery.trim().length))}
             </>
         )

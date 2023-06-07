@@ -5,15 +5,11 @@
     justify-content: space-between;
     align-items: center;
     padding: 0px 40px;
-    margin: 0;
+    margin: 33px auto 0 auto;
     gap: 171px;
 
-    position: absolute;
     width: 1440px;
     height: 32px;
-    left: 0px;
-    top: 33px;
-
 }
 
 .title-container {
