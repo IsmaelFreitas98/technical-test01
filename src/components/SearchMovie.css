@@ -4,11 +4,9 @@
     align-items: center;
     padding: 0px;
     gap: 50px;
-    position: absolute;
+    margin: 280px auto 0 auto;
     width: 462px;
     height: 334.77px;
-    left: 489px;
-    top: 345px;
 }
 
 .search-pic-container {
