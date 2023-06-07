@@ -12,6 +12,7 @@ function App() {
   const [movies, setMovies] = useState(null);
   const [totalResults, setTotalResults] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isSearchResolved, setIsSearchResolved] = useState(true);
   const [page, setPage] = useState(1);
 
   const cleanMovies = () => {
@@ -20,6 +21,9 @@ function App() {
   }
 
   const handleSearch = async () => {
+
+    setIsSearchResolved(false)
+
     try {
       const newMoviesArr = [];
       const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}`);
@@ -28,12 +32,14 @@ function App() {
       newMoviesArr.push(...data.results);
 
       setMovies(newMoviesArr);
+      setIsSearchResolved(true);
       setTotalResults(data.total_results);
       
       for(let page = 2; page <= data.total_pages; page++) {
-          const {data: newData} = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}&page=${page}`);
-          newMoviesArr.push(...newData.results);
+        const {data: newData} = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}&page=${page}`);
+        newMoviesArr.push(...newData.results);
       }
+      
 
   } catch (err) {
       console.error(err);
@@ -48,7 +54,7 @@ function App() {
         {movies ?
           <MovieDisplayer movies={movies} searchQuery={searchQuery} totalResults={totalResults} page={page} setPage={setPage}/>
           :
-          <SearchMovie callbackToSetMovies={setMovies} callbackToSetResult={setTotalResults} searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleSearch={handleSearch} />
+          <SearchMovie callbackToSetMovies={setMovies} isSearchResolved={isSearchResolved} callbackToSetResult={setTotalResults} searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleSearch={handleSearch} />
         }
       </section>
     </div>

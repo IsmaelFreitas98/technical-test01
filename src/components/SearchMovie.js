@@ -4,7 +4,7 @@ import "./SearchMovie.css";
 
 function SearchMovie(props) {
 
-    const { searchQuery, setSearchQuery, handleSearch} = props;
+    const { searchQuery, setSearchQuery, handleSearch, isSearchResolved} = props;
 
     const handleInputSubmit = async (e) => {
         e.preventDefault();
@@ -24,7 +24,7 @@ function SearchMovie(props) {
                 <div className="search-input">
                     <img src={magnifierPicture} alt="search" />
                     <form onSubmit={handleInputSubmit}>
-                        <input required type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+                        <input disabled={isSearchResolved ? false : true} type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
                     </form>
                 </div>
             </div>
