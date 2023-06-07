@@ -42,6 +42,10 @@ function MovieCard(props) {
     const calcDate = () => {
         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+        if(!movieDetails.release_date) {
+            return "Release Date Not Available";
+        }
+
         const day = movieDetails.release_date.split("-")[2];
         const month = months[parseInt(movieDetails.release_date.split("-")[1]) - 1];
         const year = movieDetails.release_date.split("-")[0];

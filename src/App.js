@@ -27,10 +27,10 @@ function App() {
 
       newMoviesArr.push(...data.results);
       
-      for(let page = 2; page <= data.total_pages; page++) {
-          const {data: newData} = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}&page=${page}`);
-          newMoviesArr.push(...newData.results);
-      }
+      // for(let page = 2; page <= data.total_pages; page++) {
+      //     const {data: newData} = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}&page=${page}`);
+      //     newMoviesArr.push(...newData.results);
+      // }
 
       setTotalResults(data.total_results);
       setMovies(newMoviesArr);
