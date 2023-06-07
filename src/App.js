@@ -26,21 +26,19 @@ function App() {
       const {data} = response;
 
       newMoviesArr.push(...data.results);
-      
-      // for(let page = 2; page <= data.total_pages; page++) {
-      //     const {data: newData} = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}&page=${page}`);
-      //     newMoviesArr.push(...newData.results);
-      // }
 
-      setTotalResults(data.total_results);
       setMovies(newMoviesArr);
-
+      setTotalResults(data.total_results);
+      
+      for(let page = 2; page <= data.total_pages; page++) {
+          const {data: newData} = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}&page=${page}`);
+          newMoviesArr.push(...newData.results);
+      }
 
   } catch (err) {
       console.error(err);
   }
 }
-
 
   return (
     <div className="App" style={{minHeight: movies ? "1396px" : "1024px"}}>
