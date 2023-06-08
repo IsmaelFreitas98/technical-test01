@@ -3,16 +3,16 @@ import "./MovieDisplayer.css"
 import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import Pagination from "./Pagination";
+import { useSearchParams } from "react-router-dom";
+import axios from "axios";
 
 function MovieDisplayer(props) {
 
-    const { movies, searchQuery, totalResults, page, setPage } = props;
+    const { movies, searchQuery, page, setPage, totalResults } = props;
 
-    const [moviesToDisplay, setMoviesToDisplay] = useState(movies.slice(0, 8));
+    const [moviesToDisplay, setMoviesToDisplay] = useState(null);
     const [sortOrder, setSortOrder] = useState("ascending");
-
-    const [resultQuery, setResultQuery] = useState("");
-
+    
     useEffect(() => {
         return () => {
             setPage(1);
@@ -20,26 +20,25 @@ function MovieDisplayer(props) {
     }, []);
 
     useEffect(() => {
-        setResultQuery(searchQuery);
-    }, [movies]);
-
-    useEffect(() => {
         setPage(1);
     }, [sortOrder, movies]);
 
     useEffect(() => {
 
-        const newMoviesToDisplay = [...movies];
+        if(movies) {
+            const newMoviesToDisplay = [...movies];
 
-        newMoviesToDisplay.sort((movie, nextMovie) => {
-            return sortOrder === "ascending" ? movie.title.localeCompare(nextMovie.title) : nextMovie.title.localeCompare(movie.title);
-        })
-        
-        setMoviesToDisplay(newMoviesToDisplay.slice((0 + (page - 1) * 10),( 10 + (page - 1) * 10)));
+            newMoviesToDisplay.sort((movie, nextMovie) => {
+                return sortOrder === "ascending" ? movie.title.localeCompare(nextMovie.title) : nextMovie.title.localeCompare(movie.title);
+            })
+
+            setMoviesToDisplay(newMoviesToDisplay.slice((0 + (page - 1) * 10),( 10 + (page - 1) * 10)));
+        }
 
     }, [sortOrder, page, movies])
 
     const renderMovies = () => {
+
         return moviesToDisplay.map(movie => {
             return (
                 <MovieCard key={movie.id} movie={movie} />
@@ -51,8 +50,8 @@ function MovieDisplayer(props) {
         <>
             <div className="displayer-header">
                 <div className="result-description">
-                    <h4>Results for '{resultQuery}'</h4>
-                    <p>We found {totalResults} {totalResults === 1 ? "result" : "results"} for '{resultQuery}'</p>
+                    <h4>Results for '{searchQuery}'</h4>
+                    <p>We found {totalResults} {totalResults === 1 ? "result" : "results"} for '{searchQuery}'</p>
                 </div>
 
                 <select className="order-selector" value={sortOrder} onChange={e => setSortOrder(e.target.value)}>
@@ -63,7 +62,7 @@ function MovieDisplayer(props) {
 
             <section className="results-container">
                 <div className="cards-container">
-                    {renderMovies()}
+                    {moviesToDisplay && renderMovies()}
                 </div>
 
                 <div>

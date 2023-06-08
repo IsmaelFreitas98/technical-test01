@@ -5,16 +5,18 @@ import profilePic from "../images/profile-pic.png";
 import arrowDown from "../images/arrow-down.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const key = process.env.REACT_APP_API_KEY || "37806dd1300837fa217e0539b5252818";
 
 function Header(props) {
 
-    const { movies, callbackToCleanMovies, searchQuery, setSearchQuery, handleSearch} = props;
-
     const [isSearchFocused, setIsSearchFocused] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
     const [titleSuggestions, setTitleSuggestions] = useState(null);
-    const [isDataReady, setIsDataReady] = useState(true)
+    const [isDataReady, setIsDataReady] = useState(true);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(isSearchFocused && searchQuery !== "" && isDataReady) {
@@ -42,14 +44,12 @@ function Header(props) {
         }
     }, [searchQuery])
 
-    useEffect(() => {
-        setSearchQuery("");
-    }, [movies])
 
     const handleInputSubmit = async (e) => {
         e.preventDefault();
 
-        handleSearch();
+        navigate(`/movies?search=${searchQuery}`);
+        
     }
 
     const renderOption = (title) => {
@@ -71,13 +71,13 @@ function Header(props) {
     return(
         <header className="header">
 
-            <div onClick={callbackToCleanMovies} className="title-container">
+            <div onClick={() => navigate("/")} className="title-container">
                 <h1 className="concealed-title">CONCEALED</h1>
                 <h1 className="concealed-title red">FILMS</h1>
             </div>
 
-            <nav className="header-nav" style={{width: movies ? "424px" : "114px", height: movies ? "40px" : "32px"}}>
-                {movies && 
+            <nav className="header-nav" style={{width: props.isMovieDisplayer ? "424px" : "114px", height: props.isMovieDisplayer ? "40px" : "32px"}}>
+                {props.isMovieDisplayer && 
                     <form onSubmit={handleInputSubmit}>
                         <input onFocus={() => setIsSearchFocused(true)} onBlur={() => {setTimeout(() => {setIsSearchFocused(false)}, 100)}} style={{borderRadius: (isSearchFocused && titleSuggestions) ? "12px 12px 0 0" : "12px"}} type="text" placeholder="Search" className="header-search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
                         { (isSearchFocused && titleSuggestions) &&
