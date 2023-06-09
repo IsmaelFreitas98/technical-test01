@@ -14,14 +14,12 @@ function Header(props) {
     const [isSearchFocused, setIsSearchFocused] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [titleSuggestions, setTitleSuggestions] = useState(null);
-    const [isDataReady, setIsDataReady] = useState(true);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(isSearchFocused && searchQuery !== "" && isDataReady) {
 
-            setIsDataReady(false);
+        if(isSearchFocused && searchQuery !== "") {
 
             axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}`)
                 .then((response) => {
@@ -32,14 +30,12 @@ function Header(props) {
                                             .map(movie => movie.title);
 
                     suggestionsArr.length === 0 ? setTitleSuggestions(null) : setTitleSuggestions(suggestionsArr);
-                    setIsDataReady(true);
                 })
                 .catch((err) => {
                     console.error(err);
                 });
 
         } else if(searchQuery === "") {
-            console.log("clean suggestions");
             setTitleSuggestions(null);
         }
     }, [searchQuery])
@@ -47,9 +43,8 @@ function Header(props) {
 
     const handleInputSubmit = async (e) => {
         e.preventDefault();
-
         navigate(`/movies?search=${searchQuery}`);
-        
+        setSearchQuery("");
     }
 
     const renderOption = (title) => {
@@ -76,15 +71,14 @@ function Header(props) {
                 <h1 className="concealed-title red">FILMS</h1>
             </div>
 
-            <nav className="header-nav" style={{width: props.isMovieDisplayer ? "424px" : "114px", height: props.isMovieDisplayer ? "40px" : "32px"}}>
-                {props.isMovieDisplayer && 
+            <nav className="header-nav" style={{width: props.isResultsPage ? "424px" : "114px", height: props.isResultsPage ? "40px" : "32px"}}>
+                {props.isResultsPage &&
                     <form onSubmit={handleInputSubmit}>
                         <input onFocus={() => setIsSearchFocused(true)} onBlur={() => {setTimeout(() => {setIsSearchFocused(false)}, 100)}} style={{borderRadius: (isSearchFocused && titleSuggestions) ? "12px 12px 0 0" : "12px"}} type="text" placeholder="Search" className="header-search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
                         { (isSearchFocused && titleSuggestions) &&
                             <div className="suggestion-box">
                                 <ul>
                                     {titleSuggestions.map((title, index) => {
-                                        console.log(titleSuggestions);
                                         return (
                                             <li key={index} style={{top: index * 40 + "px"}} onClick={() => setSearchQuery(title)}>{renderOption(title)}</li>
                                         );

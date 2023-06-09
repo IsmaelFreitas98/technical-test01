@@ -3,8 +3,6 @@ import "./MovieDisplayer.css"
 import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import Pagination from "./Pagination";
-import { useSearchParams } from "react-router-dom";
-import axios from "axios";
 
 function MovieDisplayer(props) {
 

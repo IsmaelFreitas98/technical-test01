@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import MovieDisplayer from "../components/MovieDisplayer";
@@ -17,9 +18,10 @@ function ResultsPage() {
 
     useEffect(() => {
         getMovies();
-    }, []);
+    }, [searchQuery]);
 
     const getMovies = async () => {
+       
         try {
             const newMoviesArr = [];
             const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}`);
@@ -31,8 +33,9 @@ function ResultsPage() {
             setTotalResults(data.total_results);
             
             for(let page = 2; page <= data.total_pages; page++) {
-              const {data: newData} = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}&page=${page}`);
-              newMoviesArr.push(...newData.results);
+                
+                const {data: newData} = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}&page=${page}`);
+                newMoviesArr.push(...newData.results);
             }
             
 
