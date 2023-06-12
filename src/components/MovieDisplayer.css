@@ -156,6 +156,7 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
     padding: 0px;
     gap: 40px;
@@ -180,6 +181,85 @@
 
 .order-selector option {
     color: black;
+}
+
+@media only screen and (max-width: 1440px) {
+    
+    .displayer-header {
+        width: 900px;
+    }
+
+    .results-container {
+        width: 1000px;
+    }
+    
+    .cards-container {
+        width: 1000px;
+    }
+
+    .pagination {
+        width: 1000px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    
+    .displayer-header {
+        width: 500px;
+        height: 100px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 45px;
+    }
+
+    .result-description {
+        flex-direction: column;
+        align-items: center;
+        width: fit-content;
+        height: 47px;
+    }
+    
+    .result-description h4,
+    .result-description p {
+        width: fit-content;
+    }
+
+
+
+    .results-container {
+        width: 600px;
+    }
+    
+    .cards-container {
+        width: 600px;
+    }
+
+    .pagination {
+        width: 600px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    .displayer-header {
+        width: 100%;
+    }
+
+    .results-container {
+        width: 100%;
+    }
+
+    .cards-container {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pagination {
+        width: 100%;
+    }
 }
 
 

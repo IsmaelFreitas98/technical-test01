@@ -23,3 +23,9 @@
 span.active-page {
     color:#D81F26;
 }
+
+@media only screen and (max-width: 1440px) {
+    .header {
+        width: 1000px;
+    }
+}
