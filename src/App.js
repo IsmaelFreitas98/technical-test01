@@ -1,9 +1,4 @@
 import './App.css';
-import Header from './components/Header';
-import SearchMovie from './components/SearchMovie';
-import { useEffect, useState } from 'react';
-import MovieDisplayer from './components/MovieDisplayer';
-import axios from 'axios';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ResultsPage from './pages/ResultsPage';
