@@ -2,6 +2,8 @@
 import "./Header.css"
 import bell from "../images/notification.png";
 import profilePic from "../images/profile-pic.png";
+import magnifierPicture from "../images/search-icon.png";
+import closePicture from "../images/close.png";
 import arrowDown from "../images/arrow-down.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -42,7 +44,10 @@ function Header(props) {
 
 
     const handleInputSubmit = async (e) => {
-        e.preventDefault();
+        if(e) {
+            e.preventDefault();
+        }
+
         navigate(`/movies?search=${searchQuery}`);
         setSearchQuery("");
     }
@@ -72,15 +77,23 @@ function Header(props) {
             </div>
 
             <nav className="header-nav" style={{width: props.isResultsPage ? "424px" : "114px", height: props.isResultsPage ? "40px" : "32px"}}>
+                
                 {props.isResultsPage &&
-                    <form onSubmit={handleInputSubmit}>
-                        <input onFocus={() => setIsSearchFocused(true)} onBlur={() => {setTimeout(() => {setIsSearchFocused(false)}, 100)}} style={{borderRadius: (isSearchFocused && titleSuggestions) ? "12px 12px 0 0" : "12px"}} type="text" placeholder="Search" className="header-search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+
+                    <form onSubmit={handleInputSubmit}  style={{borderRadius: (isSearchFocused && titleSuggestions) ? "12px 12px 0 0" : "12px"}}>
+                        <img src={magnifierPicture} alt="search" onClick={() => searchQuery !== "" && handleInputSubmit()}/>
+                        <input onFocus={() => setIsSearchFocused(true)} onBlur={() => {setTimeout(() => {setIsSearchFocused(false)}, 100)}} type="text" placeholder="Search" className="header-search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+
+                        { searchQuery !== "" &&
+                            <img src={closePicture} alt="close" style={{height: "16px", width: "16px"}} className="close-search" onClick={() => setSearchQuery("")}/>
+                        }
+
                         { (isSearchFocused && titleSuggestions) &&
                             <div className="suggestion-box">
                                 <ul>
                                     {titleSuggestions.map((title, index) => {
                                         return (
-                                            <li key={index} style={{top: index * 40 + "px"}} onClick={() => setSearchQuery(title)}>{renderOption(title)}</li>
+                                            <li key={index} style={{top: index * 40 + "px"}} onClick={() => {setSearchQuery(title)}}>{renderOption(title)}</li>
                                         );
                                     })}
                                 </ul>
