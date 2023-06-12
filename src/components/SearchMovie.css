@@ -91,3 +91,45 @@
 .search-form form {
     margin: 0;
 }
+
+@media only screen and (max-width: 600px) {
+    .search-box {
+        width: 100vw;
+        margin: 100px auto 0 auto;
+    }
+    
+    .search-pic-container {
+        width: 90vw;
+    }
+    
+    .search-pic-container img {
+        max-width: 90vw;
+        height: 167px;
+    }
+    
+    .search-form {    
+        width: 100vw;    
+    }
+    
+    .search-input {
+        width: 290px;
+        height: 40px;
+    }
+    
+    .search-input input {
+        width: 230px;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    
+    .search-input {
+        width: 230px;
+        height: 40px;
+    }
+    
+    .search-input input {
+        width: 170px;
+    }
+}
+

@@ -12,7 +12,11 @@
     height: 32px;
 }
 
-.title-container {
+.small-menu {
+    display: none;
+}
+
+.long-title-container {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -23,10 +27,14 @@
     height: 28px;
 }
 
+.short-title-container {
+    display: none;
+}
+
 h1.concealed-title {
     font-weight: 600;
     font-size: 23.1px;
-    line-height: 27.96px;
+    line-height: 28px;
     margin: 0;
     padding: 0;
 }
@@ -58,7 +66,7 @@ h1.concealed-title.red {
     height: 24px;
 }
 
-.header-nav > form {
+.header-search-form {
     position: relative;
 
     box-sizing: border-box;
@@ -78,12 +86,12 @@ h1.concealed-title.red {
     border-radius: 12px;
 }
 
-.header-nav > form img {
+.header-search-form img {
     width: 24px;
     height: 24px;
 }
 
-.header-nav > form img:hover {
+.header-search-form img:hover {
     cursor: pointer;
 }
 
@@ -183,14 +191,70 @@ h1.concealed-title.red {
 @media only screen and (max-width: 1000px) {
     .header {
         width: 600px;
-       overflow: hidden;
+        gap: 0;
+        justify-content: space-between;
+    }
+
+    .header-nav {
+        display: none;
+    }
+
+    .small-menu {
+        display: block;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .small-menu img {
+        height: 20px;
     }
 }
 
 @media only screen and (max-width: 600px) {
     .header {
-        width: 100%;
-       overflow: hidden;
+        width: 100vw;
+        gap: 0;
+        justify-content: space-between;
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+    .long-title-container {
+        display: none;
+    }
+
+    .short-title-container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 5px;
+
+        width: fit-content;
+        height: 28px;
     }
 }
 
+@media only screen and (max-width: 300px) {
+    .header-search-form {
+        width: 250px;
+    }
+
+    .header-search {
+        width: 170px;
+    }
+
+    .suggestion-box {
+        width: 250px;
+    }
+    
+    .suggestion-box ul {
+        width: 250px;
+    }
+    
+    .suggestion-box ul li {
+        width: 250px;
+    }
+}

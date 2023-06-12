@@ -4,6 +4,7 @@ import bell from "../images/notification.png";
 import profilePic from "../images/profile-pic.png";
 import magnifierPicture from "../images/search-icon.png";
 import closePicture from "../images/close.png";
+import burguerMenu from "../images/burguer-menu.png";
 import arrowDown from "../images/arrow-down.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -16,6 +17,8 @@ function Header(props) {
     const [isSearchFocused, setIsSearchFocused] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [titleSuggestions, setTitleSuggestions] = useState(null);
+
+    const [isSmallSearchOpen, setIsSmallSearchOpen] = useState(false);
 
     const navigate = useNavigate();
 
@@ -48,6 +51,10 @@ function Header(props) {
             e.preventDefault();
         }
 
+        if(isSmallSearchOpen) {
+            setIsSmallSearchOpen(false);
+        }
+
         navigate(`/movies?search=${searchQuery}`);
         setSearchQuery("");
     }
@@ -69,49 +76,88 @@ function Header(props) {
     }
 
     return(
-        <header className="header">
+        <>
 
-            <div onClick={() => navigate("/")} className="title-container">
-                <h1 className="concealed-title">CONCEALED</h1>
-                <h1 className="concealed-title red">FILMS</h1>
-            </div>
+            <header className="header">
 
-            <nav className="header-nav" style={{width: props.isResultsPage ? "424px" : "114px", height: props.isResultsPage ? "40px" : "32px"}}>
+                <div onClick={() => navigate("/")} className="long-title-container">
+                    <h1 className="concealed-title">CONCEALED</h1>
+                    <h1 className="concealed-title red">FILMS</h1>
+                </div>
                 
-                {props.isResultsPage &&
-
-                    <form onSubmit={handleInputSubmit}  style={{borderRadius: (isSearchFocused && titleSuggestions) ? "12px 12px 0 0" : "12px"}}>
-                        <img src={magnifierPicture} alt="search" onClick={() => searchQuery !== "" && handleInputSubmit()}/>
-                        <input onFocus={() => setIsSearchFocused(true)} onBlur={() => {setTimeout(() => {setIsSearchFocused(false)}, 100)}} type="text" placeholder="Search" className="header-search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
-
-                        { searchQuery !== "" &&
-                            <img src={closePicture} alt="close" style={{height: "16px", width: "16px"}} className="close-search" onClick={() => setSearchQuery("")}/>
-                        }
-
-                        { (isSearchFocused && titleSuggestions) &&
-                            <div className="suggestion-box">
-                                <ul>
-                                    {titleSuggestions.map((title, index) => {
-                                        return (
-                                            <li key={index} style={{top: index * 40 + "px"}} onClick={() => {setSearchQuery(title)}}>{renderOption(title)}</li>
-                                        );
-                                    })}
-                                </ul>
-                            </div>
-                        }
-                    </form>
-                }
-
-                <img src={bell} alt="bell" />
-
-                <div className="profile-icon-container">
-                    <img src={profilePic} alt="profile" className="profile-pic"/>
-                    <img src={arrowDown} alt="arrow" className="profile-arrow"/>
+                <div onClick={() => navigate("/")} className="short-title-container">
+                    <h1 className="concealed-title">C</h1>
+                    <h1 className="concealed-title red">F</h1>
                 </div>
 
-            </nav>
+                <nav className="header-nav" style={{width: props.isResultsPage ? "424px" : "114px", height: props.isResultsPage ? "40px" : "32px"}}>
+                    
+                    {props.isResultsPage &&
 
-        </header>
+                        <form className="header-search-form" onSubmit={handleInputSubmit}  style={{borderRadius: (isSearchFocused && titleSuggestions) ? "12px 12px 0 0" : "12px"}}>
+                            <img src={magnifierPicture} alt="search" onClick={() => searchQuery !== "" && handleInputSubmit()}/>
+                            <input onFocus={() => setIsSearchFocused(true)} onBlur={() => {setTimeout(() => {setIsSearchFocused(false)}, 100)}} type="text" placeholder="Search" className="header-search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+
+                            { searchQuery !== "" &&
+                                <img src={closePicture} alt="close" style={{height: "16px", width: "16px"}} className="close-search" onClick={() => setSearchQuery("")}/>
+                            }
+
+                            { (isSearchFocused && titleSuggestions) &&
+                                <div className="suggestion-box">
+                                    <ul>
+                                        {titleSuggestions.map((title, index) => {
+                                            return (
+                                                <li key={index} style={{top: index * 40 + "px"}} onClick={() => {setSearchQuery(title)}}>{renderOption(title)}</li>
+                                            );
+                                        })}
+                                    </ul>
+                                </div>
+                            }
+                        </form>
+                    }
+
+                    <img src={bell} alt="bell" />
+
+                    <div className="profile-icon-container">
+                        <img src={profilePic} alt="profile" className="profile-pic"/>
+                        <img src={arrowDown} alt="arrow" className="profile-arrow"/>
+                    </div>
+
+                </nav>
+
+                
+                <nav className="small-menu">
+                    { props.isResultsPage &&
+                        <img src={magnifierPicture} alt="search" onClick={() => setIsSmallSearchOpen(isSmallSearchOpen ? false : true)}/>
+                    }
+                    <img src={burguerMenu} alt="menu" />
+                </nav>
+                
+            </header>
+
+            { isSmallSearchOpen &&
+                <form className="header-search-form" onSubmit={handleInputSubmit}  style={{borderRadius: (isSearchFocused && titleSuggestions) ? "12px 12px 0 0" : "12px", margin: "40px auto 0 auto"}}>
+                    <img src={magnifierPicture} alt="search" onClick={() => searchQuery !== "" && handleInputSubmit()}/>
+                    <input onFocus={() => setIsSearchFocused(true)} onBlur={() => {setTimeout(() => {setIsSearchFocused(false)}, 100)}} type="text" placeholder="Search" className="header-search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+
+                    { searchQuery !== "" &&
+                        <img src={closePicture} alt="close" style={{height: "16px", width: "16px"}} className="close-search" onClick={() => setSearchQuery("")}/>
+                    }
+
+                    { (isSearchFocused && titleSuggestions) &&
+                        <div className="suggestion-box">
+                            <ul>
+                                {titleSuggestions.map((title, index) => {
+                                    return (
+                                        <li key={index} style={{top: index * 40 + "px"}} onClick={() => {setSearchQuery(title)}}>{renderOption(title)}</li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
+                    }
+                </form>
+            }
+        </>
     )
 }
 
