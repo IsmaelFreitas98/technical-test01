@@ -63,7 +63,7 @@ function MovieDisplayer(props) {
                     {moviesToDisplay && renderMovies()}
                 </div>
 
-                <div>
+                <div className="pagination">
                     <Pagination page={page} totalPages={Math.ceil(totalResults / 10)} setPage={setPage}/>
                 </div>
             </section>

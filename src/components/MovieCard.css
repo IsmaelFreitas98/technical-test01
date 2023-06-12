@@ -6,7 +6,7 @@
     padding: 0px;
     gap: 24px;
     width: 240px;
-    height: 482px;
+    min-height: 482px;
 }
 
 .movie-poster {
@@ -31,7 +31,6 @@
     gap: 18px;
 
     width: 228px;
-    height: 96px;
 }
 
 .movie-info-text {
@@ -42,13 +41,11 @@
     gap: 8px;
 
     width: 228px;
-    height: 48px;
     flex-grow: 0;
 }
 
 .movie-info-text h4 {
     width: 100%;
-    height: 22px;
     margin: 0;
 
     font-weight: 400;
@@ -61,7 +58,6 @@
 
 .movie-info-text p {
     width: 100%;
-    height: 18px;
     margin: 0;
 
     font-weight: 400;

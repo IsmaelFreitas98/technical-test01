@@ -81,13 +81,11 @@
     flex-direction: column;
     align-items: center;
     padding: 0px;
-    gap: 60px;
 
     margin: auto;
     margin-top: 44px;
 
     width: 1360px;
-    height: 1096px;
 }
 
 .cards-container {
@@ -99,7 +97,7 @@
     gap: 40px;
 
     width: 1360px;
-    height: 1004px;
+    min-height: 1004px;
 }
 
 .pagination {
@@ -109,19 +107,13 @@
     align-items: center;
     padding: 0px;
     gap: 8px;
-
+    margin: 60px;
     width: 1360px;
     height: 32px;
 }
 
 
-
-
-
-
-
 .order-selector option {
-    
     color: black;
 }
 
