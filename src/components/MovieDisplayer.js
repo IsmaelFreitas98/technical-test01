@@ -3,6 +3,7 @@ import "./MovieDisplayer.css"
 import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import Pagination from "./Pagination";
+import arrowDown from "../images/arrow-down.png";
 
 function MovieDisplayer(props) {
 
@@ -10,6 +11,7 @@ function MovieDisplayer(props) {
 
     const [moviesToDisplay, setMoviesToDisplay] = useState(null);
     const [sortOrder, setSortOrder] = useState("ascending");
+    const [isSortSelectorOpen, setIsSortSelectorOpen] = useState(false);
     
     useEffect(() => {
         return () => {
@@ -44,6 +46,10 @@ function MovieDisplayer(props) {
         })
     }
 
+    const handleOptionsChange = () => {
+        setIsSortSelectorOpen(isSortSelectorOpen ? false : true);
+    }
+
     return (
         <>
             <div className="displayer-header">
@@ -52,10 +58,23 @@ function MovieDisplayer(props) {
                     <p>We found {totalResults} {totalResults === 1 ? "result" : "results"} for '{searchQuery}'</p>
                 </div>
 
-                <select className="order-selector" value={sortOrder} onChange={e => setSortOrder(e.target.value)}>
-                    <option value="ascending">Sort By Name: Ascending</option>
-                    <option value="descending">Sort By Name: Descending</option>
-                </select>
+                <button className="order-selector" style={{backgroundColor: isSortSelectorOpen ? "#131C23" : "#09131A"}} onClick={handleOptionsChange} onBlur={() => setIsSortSelectorOpen(false)}>
+                    <span>Sort By Name:</span>
+                    <span>{sortOrder === "ascending" ? "Ascending" : "Descending"}</span>
+
+                    <img src={arrowDown} alt="arrow" className={isSortSelectorOpen ? "arrow-up" : "arrow-down"}/>
+
+                    { isSortSelectorOpen &&
+                        <div className="sort-options">
+                            <div onClick={() => {setSortOrder("ascending"); setIsSortSelectorOpen(false)}}>
+                                <span>Ascending</span>
+                            </div>
+                            <div onClick={() => {setSortOrder("descending"); setIsSortSelectorOpen(false)}}>
+                                <span>Descending</span>
+                            </div>
+                        </div>
+                    }
+                </button>
             </div>
 
             <section className="results-container">

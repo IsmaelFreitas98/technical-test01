@@ -55,22 +55,86 @@
 }
 
 .order-selector {
+    position: relative;
     box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
     padding: 8px 12px;
-    gap: 8px;
 
     width: 253px;
     height: 40px;
 
+    background: #09131A;
+    border: 1px solid rgba(102, 105, 106, 0.2);
+    border-radius: 8px;
+
+}
+
+.order-selector:hover {
+    background-color: #131C23;
+
+}
+
+.order-selector > span {
+    font-weight: 400;
     font-size: 16px;
     line-height: 19px;
 
     color: #FFFFFF;
+}
 
-    background: transparent;
-    border: 1px solid rgba(102, 105, 106, 0.2);
+.sort-options {
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+
+    width: 253px;
+    height: 78px;
+
+    left: -1px;
+    top: 40px;
+
+    background: #131C23;
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.22);
     border-radius: 8px;
-    margin: 0;
+}
+
+.sort-options div {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 12px;
+    gap: 8px;
+
+    width: 253px;
+    height: 39px;
+
+    border-radius: 8px;
+}
+
+.sort-options div span{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #FFFFFF;
+}
+
+.arrow-up {
+    transform: rotate(-180deg);
+    transition: all 0.2s ease-in-out;
+}
+
+.arrow-down {
+    transform: rotate(0);
+    transition: all 0.2s ease-in-out;
 }
 
 
