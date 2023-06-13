@@ -2,6 +2,8 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ResultsPage from './pages/ResultsPage';
+import MoviePage from './pages/MoviePage';
+import PageNotFound from './pages/PageNotFound';
 
 
 
@@ -12,6 +14,8 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/movies' element={<ResultsPage />} />
+          <Route path='/movies/:movieId' element={<MoviePage />} />
+          <Route path='/*' element={<PageNotFound />} />
         </Routes>
     </div>
   );
