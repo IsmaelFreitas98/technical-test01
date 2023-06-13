@@ -1,24 +1,28 @@
 import defaultCover from "../images/default-movie.jpg";
 import star from "../images/star.png";
 import arrowBack from "../images/arrow-back.png";
+import emptyStar from "../images/empty-star.png";
 import { calcDate, calcGenres, calcTimeString, roundAverage } from "../utils/AuxFunc";
 import "./DetailsDisplayer.css";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function DetailsDisplayer({movie, credits}) {
 
+    const [isFavorite, setIsFavorite] = useState(false);
+
     const navigate = useNavigate();
 
-    console.log(credits);
-
     const getDirector = () => {
-        return credits.crew.filter(member => member.job === "Director")[0].name;
+        const director = credits.crew.filter(member => member.job === "Director")[0];
+        
+        return director ? director.name : "Not specified";
     }
 
     const getWriters = () => {
         const writers = credits.crew.filter(member => member.job === "Writer");
 
-        return writers.map(writer => {
+        return writers.length === 0 ? "Not specified" : writers.map(writer => {
             return (
                 <li key={writer.id}>
                     {writer.name}
@@ -33,37 +37,45 @@ function DetailsDisplayer({movie, credits}) {
 
     return (
         <section className="details-container">
-            <img src={movie.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : defaultCover} alt={movie.title}/>
+            <img className="details-poster" src={movie.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : defaultCover} alt={movie.title}/>
 
-            <div>
-                <img src={arrowBack} alt="back" onClick={()=> navigate(-1)} />
-                <h1>{movie.title}</h1>
+            <div className="details-info-container">
+                <img className="return-arrow" src={arrowBack} alt="back" onClick={()=> navigate(-1)} />
+                
+                <div className="general-info">
+                    <h1>{movie.title}</h1>
 
-                <span>{calcTimeString(movie)} | {calcDate(movie)} | {calcGenres(movie)}</span>
+                    <span className="grey">{calcTimeString(movie)} | {calcDate(movie)} | {calcGenres(movie)}</span>
 
+                    <button className="add-favorites" onClick={() => setIsFavorite(isFavorite ? false : true)}><img src={isFavorite ? star : emptyStar} alt="star" /> <span>Add to favorites</span></button>
+                </div>
+                
                 <div className="rating">
                     <span>{roundAverage(movie)} / 10</span>
                     <img src={star} alt="star" />
                 </div>
 
-                <h2>Plot</h2>
-                <p>{movie.overview}</p>
+                <div className="specific-container">
+                    <h2 className="grey">Plot</h2>
+                    <p>{movie.overview}</p>
+                </div>
+
 
                 <div className="credits">
-                    <div>
-                        <h2>Director</h2>
+                    <div className="specific-container">
+                        <h2 className="grey">Director</h2>
                         <span>{getDirector()}</span>
                     </div>
                     
-                    <div>
-                        <h2>Story By</h2>
+                    <div className="specific-container">
+                        <h2 className="grey">Story By</h2>
                         <ul>
                             {getWriters()}
                         </ul>
                     </div>
 
-                    <div>
-                    <h2>Cast</h2>
+                    <div className="specific-container">
+                        <h2 className="grey">Cast</h2>
                         <ul>
                             {getActors()}
                         </ul>
